@@ -1,0 +1,31 @@
+{
+    "Milestone3": [
+        {
+            "files": [
+                {
+                    "testcaseFile": "milestone3.json",
+                    "outputFile": "generatedOutputFile.txt",
+                    "errorLogFile": "logFile.txt"
+                }
+            ],
+            "defaultVariables": [
+                {
+                    "testDuration": 5,
+                    "testType": "static",
+                    "testSize": 1000,
+                    "degreeOfParallelism": 4,
+                    "sleepInterval": 0,
+                    "ratioOfMethods": [
+                        {
+                            "getItem": 80,
+                            "add": 9,
+                            "contains": 2,
+                            "remove": 9,
+                            "clear": 0
+                        }
+                     ]
+                }
+            ]
+        }
+    ]
+}

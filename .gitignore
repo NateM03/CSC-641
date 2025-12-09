@@ -1,0 +1,23 @@
+# Compiled executables
+milestone3/milestone3
+milestone3/*.o
+milestone3/*.exe
+
+# Build artifacts
+milestone3/generatedOutputFile.txt
+milestone3/*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*~
