@@ -1,7 +1,10 @@
+// Nathaniel Moreno
+// CSC-641
+// Milestone3.cpp
+// Description: Multithreaded benchmark driver for CacheManager library
 #include <iostream>
 #include <fstream>
 #include <thread>
-#include <mutex>
 #include <atomic>
 #include <vector>
 #include <chrono>
@@ -10,7 +13,7 @@
 #include <iomanip>
 #include <sstream>
 #include <climits>
-#include <optional>
+
 
 #include "cache-manager.hpp"
 #include "json.hpp"
@@ -141,9 +144,6 @@ high_resolution_clock::time_point performInitialLoad(CacheManager* cache) {
 }
 
 // Static ratio benchmark worker
-// Implements pattern: 80% getItem, 9% add, 2% contains, 9% remove
-// Based on example pattern: for i in 1..9: 3 getItem, add, 3 getItem, (occasionally contains), 3 getItem, remove
-// This gives approximately: 81 getItem, 9 add, 2 contains, 9 remove per cycle
 void staticBenchmarkWorker(int threadId, const BenchmarkConfig& config, 
                            high_resolution_clock::time_point startTime) {
     int nextAddKey = 1001 + threadId * 10000; // Ensure unique keys per thread
@@ -151,16 +151,6 @@ void staticBenchmarkWorker(int threadId, const BenchmarkConfig& config,
     mt19937 gen(rd() + threadId);
     
     auto endTime = startTime + seconds(config.testDuration);
-    
-    // Pattern based on specification example:
-    // for i in 1..9:
-    //     for j in 1..3: getItem()
-    //     add()
-    //     for j in 1..3: getItem()
-    //     if i == 2 or i == 8: contains()
-    //     for j in 1..3: getItem()
-    //     remove()
-    // This yields: 9*(3+3+3) = 81 getItem, 9 add, 2 contains, 9 remove
     
     while (high_resolution_clock::now() < endTime) {
         for (int i = 1; i <= 9 && high_resolution_clock::now() < endTime; i++) {
@@ -261,7 +251,7 @@ void staticBenchmarkWorker(int threadId, const BenchmarkConfig& config,
     }
 }
 
-// Dynamic ratio benchmark worker (Option C: Round-robin weighted selection)
+// Dynamic ratio benchmark worker
 // Uses probability-based selection from config ratios
 void dynamicBenchmarkWorker(int threadId, const BenchmarkConfig& config,
                            high_resolution_clock::time_point startTime) {
