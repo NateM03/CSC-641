@@ -1,0 +1,42 @@
+=== Multithreaded Cache Manager Benchmark ===
+Configuration:
+  Test Duration: 60 seconds
+  Test Type: static
+  Degree of Parallelism: 100
+  Sleep Interval: 1 microseconds
+  Method Ratios - getItem: 80%, add: 9%, contains: 2%, remove: 9%
+
+Phase 1: Initial Load - Loading 1000 items...
+Initial Load completed in 339 microseconds
+Initial Load completed in 0.339 milliseconds
+
+Phase 2: Benchmark Execution - Starting 100 worker threads...
+Calling clear()...
+
+=== Benchmark Results ===
+Initial Load Time: 411 microseconds (0.411 milliseconds)
+Total Test Time: 60004918 microseconds (60004.9 milliseconds, 60.0049 seconds)
+
+getItem:
+  Total calls: 29117573
+  Average time: 25429.84 ns (25.43 μs, 0.03 ms)
+  Max time: 80134028 ns (80134.03 μs, 80.13 ms)
+  Min time: -639066 ns (-639.07 μs, -0.64 ms)
+
+add:
+  Total calls: 3235302
+  Average time: 31869.15 ns (31.87 μs, 0.03 ms)
+  Max time: 77981903 ns (77981.90 μs, 77.98 ms)
+  Min time: 370 ns (0.37 μs, 0.00 ms)
+
+contains:
+  Total calls: 718950
+  Average time: 25595.25 ns (25.60 μs, 0.03 ms)
+  Max time: 75843614 ns (75843.61 μs, 75.84 ms)
+  Min time: 214 ns (0.21 μs, 0.00 ms)
+
+remove:
+  Total calls: 3235236
+  Average time: 25233.55 ns (25.23 μs, 0.03 ms)
+  Max time: 77261900 ns (77261.90 μs, 77.26 ms)
+  Min time: 150 ns (0.15 μs, 0.00 ms)
